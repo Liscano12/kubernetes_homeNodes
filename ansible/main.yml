@@ -1,0 +1,32 @@
+---
+- name: Install the main node
+  hosts: main_node
+  become: yes
+  tasks:
+    - name: Run Docker playbook on the main node
+      include_tasks: docker.yml
+    - name: Run K3s_mainNode playbook on the main node
+      include_tasks: k3s_mainNode.yml
+    - name: Run Helm playbook on the main node
+      include_tasks: helm.yml
+    # dont work, because root dont have the kube config
+    #- name: Run Argo playbook on the main node
+    #  include_tasks: initArgo.yml
+
+# needed because root dont have the kube config. run with ansible user
+- name: Install init Argo
+  hosts: main_node
+  tasks:
+    - name: Run Argo playbook on the main node
+      include_tasks: initArgo.yml
+    
+
+- name: Execute Docker on the worker node connect to k3s-cluster
+  hosts: worker_node
+  become: yes
+  tasks:
+    - name: Run Docker playbook on the main node
+      include_tasks: docker.yml
+    - name: Run K3s_workerNode playbook on the main node
+      include_tasks: k3s_workerNode.yml
+    

@@ -1,0 +1,37 @@
+---
+#install k3s and move config file to an ansible user
+
+- name: Überprüfe, ob K3s bereits installiert ist
+  stat:
+    path: /usr/local/bin/k3s
+  register: k3s_bin
+
+- name: Install K3s using curl script
+  when: not k3s_bin.stat.exists
+  shell: |
+    curl -sfL https://get.k3s.io | sh -
+  args:
+    executable: /bin/bash
+
+- name: Erstelle das .kube-Verzeichnis, falls es nicht existiert
+  file:
+    path: /home/ansible/.kube
+    state: directory
+    mode: '0700'
+    owner: ansible
+    group: ansible
+
+- name: Prüfe, ob die .kube/config Datei existiert
+  stat:
+    path: /home/ansible/.kube/config
+  register: kubeconfig_file
+
+- name: Kopiere die k3s.yaml nach .kube/config
+  when: not kubeconfig_file.stat.exists
+  copy:
+    src: /etc/rancher/k3s/k3s.yaml
+    dest: /home/ansible/.kube/config
+    remote_src: yes
+    mode: '0600'
+    owner: ansible
+    group: ansible

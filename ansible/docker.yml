@@ -1,0 +1,36 @@
+---
+## Install Docker
+- name: update reposetory index
+  apt:
+    update_cache: yes
+
+- name: Install Docker
+  apt:
+    name: docker.io
+    state: present
+    update_cache: yes
+
+- name: Enable Docker service
+  service:
+    name: docker
+    enabled: true
+
+- name: Start Docker service
+  service:
+    name: docker
+    state: started
+
+- name: Überprüfe den Swap-Status
+  command: swapon --show
+  register: swap_status
+  changed_when: false
+
+- name: Disable Swap (Kubernetes requires swap to be disabled)
+  command: swapoff -a
+  when: swap_status.stdout != ""
+
+- name: Ensure swap is disabled on reboot
+  lineinfile:
+    path: /etc/fstab
+    regexp: '^\s*swap'
+    state: absent

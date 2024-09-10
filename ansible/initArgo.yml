@@ -1,0 +1,22 @@
+---
+#install Argo CD in cluster
+- name: Helm-Repository für Argo hinzufügen
+  command: helm repo add argo https://argoproj.github.io/argo-helm
+  register: helm_repo_add
+  changed_when: "'already added' not in helm_repo_add.stderr"
+
+- name: Helm-Repository aktualisieren
+  command: helm repo update
+  register: helm_repo_update
+  changed_when: "'already up-to-date' not in helm_repo_update.stderr"
+
+- name: Kopiere die values.yaml Datei auf den Remote-Host
+  copy:
+    src: ../argo/argo-cd/values.yaml
+    dest: /tmp/argo-cd-values.yaml
+    mode: '0644'
+
+- name: Installiere Argo CD mit Helm
+  command: helm install argo argo/argo-cd -n argo -f /tmp/argo-cd-values.yaml --create-namespace
+  register: helm_install
+  changed_when: "'STATUS: deployed' in helm_install.stdout"

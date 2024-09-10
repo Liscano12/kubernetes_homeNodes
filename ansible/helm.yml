@@ -1,0 +1,13 @@
+---
+# Install Helm if not exists
+- name: Download and extract Helm if not already installed
+  unarchive:
+    src: "{{ helm_archive_url }}"
+    dest: /usr/local/bin
+    extra_opts: "--strip-components=1"
+    owner: root
+    group: root
+    mode: 0755
+    remote_src: true
+  args:
+    creates: /usr/local/bin/helm

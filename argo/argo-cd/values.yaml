@@ -1,6 +1,6 @@
 global:
   # -- Default domain used by all components
-  ## Used for ingresses, certificates, SSO, notifications, etc.
+  ## Used for ingr0esses, certificates, SSO, notifications, etc.
   domain: argocd.example.com
 
   
