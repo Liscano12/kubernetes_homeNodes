@@ -1,7 +1,7 @@
 ---
 #install Argo CD in cluster
 - name: Helm-Repository für Argo hinzufügen
-  command: helm repo add argo https://argoproj.github.io/argo-helm
+  command: helm repo add argocd https://argoproj.github.io/argo-helm
   register: helm_repo_add
   changed_when: "'already added' not in helm_repo_add.stderr"
 
@@ -16,7 +16,23 @@
     dest: /tmp/argo-cd-values.yaml
     mode: '0644'
 
-- name: Installiere Argo CD mit Helm
-  command: helm install argo argo/argo-cd -n argo -f /tmp/argo-cd-values.yaml --create-namespace
+- name: Überprüfe, ob Argo CD bereits installiert ist
+  command: helm status argocd -n argocd
+  register: helm_status
+  failed_when: false
+  ignore_errors: true
+
+- name: Installiere Argo CD mit Helm, falls es noch nicht installiert ist
+  command: helm install argocd argocd/argo-cd -n argocd -f /tmp/argo-cd-values.yaml --create-namespace
+  when: helm_status.rc != 0
   register: helm_install
   changed_when: "'STATUS: deployed' in helm_install.stdout"
+
+- name: Kopiere die argo.yaml Datei auf den Remote-Host
+  copy:
+    src: ../argo/apps/argo.yaml
+    dest: /tmp/argo.yaml
+    mode: '0644'
+
+- name: Wende die argo-Ressource an
+  command: kubectl apply -f /tmp/argo.yaml -n argocd
