@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/Liscano12/kubernetes_homeNodes.git
     targetRevision: main
-    path: argo/argocd
+    path: argo/apps
   destination: 
     server: https://kubernetes.default.svc
     namespace: argo
