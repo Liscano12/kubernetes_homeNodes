@@ -1,21 +1,36 @@
-version: '3'
+version: "3"
+
 services:
-  web:
-    build: .
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./src:/data
-    environment:
-      PORT: 8080
-      WORKERS: 4
-      THREADS: 1
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      GUNICORN_CMD_ARGS: "--reload"
-      PYTHONUNBUFFERED: "TRUE"
-    restart: always
   redis:
-    image: "redis:6.0"
-  mongo:
-    image: "mongo:6"
+    image: redis:latest
+    restart: always
+
+  db:
+    image: mongo:latest
+    restart: always
+    volumes:
+      - screeps_mongo:/data/db
+
+  screeps:
+    image: demannu/screeps-docker:latest
+    depends_on:
+      - db
+      - redis
+    restart: always
+    ports:
+      - "21025:21025"
+    environment:
+      # Required
+      STEAM_API_KEY: your_real_key
+      # Optional
+      SCREEPS_PORT: 21025
+      SCREEPS_HOST: 0.0.0.0
+      SCREEPS_PASS: your_real_password
+      SCREEPS_CLI_PORT: 21026
+      SCREEPS_CLI_HOST: localhost
+    volumes:
+      - screeps_world:/world
+
+volumes:
+  screeps_mongo:
+  screeps_world:

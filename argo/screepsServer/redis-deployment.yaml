@@ -21,6 +21,6 @@ spec:
         io.kompose.service: redis
     spec:
       containers:
-        - image: redis:6.0
+        - image: redis:latest
           name: redis
       restartPolicy: Always
