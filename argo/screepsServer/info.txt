@@ -1,0 +1,27 @@
+https://github.com/jonakoudijs/docker-screeps/tree/main
+
+Screeps server Docker Image
+Screeps server on Ubuntu. Some manual steps might be required when starting the server for the first time. Besides the application container (Node.js) containing the Screeps server code, Screeps requires MongoDB and Redis.
+
+For quick setup you can use the docker-compose file included in this repo. See the Usage block for more information on the manual steps and Docker compose.
+
+Tags
+latest
+Usage
+Run with default configuration
+docker run --name screeps -d \
+  -p 8080:8080/tcp -p 8080:8080/udp \
+  jonakoudijs/screeps:latest
+Run via compose with MongoDB and Redis containers
+docker compose up -d
+Run interactively for debugging
+docker run -it --entrypoint="" \
+  jonakoudijs/screeps:latest /bin/bash
+Configuration
+Currently there is no custom configuration added in the build process to this image.
+
+Sources
+https://github.com/screeps/screeps
+https://docs.screeps.com/community-servers.html
+License
+MIT license
