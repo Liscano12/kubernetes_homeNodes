@@ -22,38 +22,3 @@ spec:
     automated:
       selfHeal: true
       prune: true
-
-
-
-#----------------------------------------
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: ingress-nginx
-spec:
-  generators:
-    - git:
-        repoURL: git@bitbucket.org:smartcommerce_se/foerch-argocd.git
-        revision: master
-        files:
-          - path: "ingress-nginx/cluster-config/**/config.json"
-  template:
-    metadata:
-      name: 'ingress-nginx-{{cluster.name}}'
-    spec:
-      project: default
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        syncOptions:
-          - CreateNamespace=true
-      destination:
-        server: '{{cluster.address}}'
-        namespace: ingress-nginx
-      source:
-        repoURL: git@bitbucket.org:smartcommerce_se/foerch-argocd.git
-        targetRevision: master
-        path: ingress-nginx
-        helm:
-          releaseName: ingress-nginx
