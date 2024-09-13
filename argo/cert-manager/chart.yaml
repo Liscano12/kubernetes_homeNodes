@@ -9,9 +9,9 @@ spec:
     repoURL: 'https://charts.jetstack.io'
     chart: cert-manager
     targetRevision: "1.15.0"
-    helm:
-      valueFiles:
-        - values.yaml
+    #helm:
+    #  valueFiles:
+    #    - values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: cert-manager
