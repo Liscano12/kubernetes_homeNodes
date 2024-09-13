@@ -22,6 +22,13 @@ spec:
       labels:
         io.kompose.service: screeps
     spec:
+      initContainers:
+        - name: init-copy-data
+          image: demannu/screeps-docker:latest
+          command: ['sh', '-c', 'cp -r /world/* /data/']
+          volumeMounts:
+            - mountPath: /data
+              name: screeps-world
       containers:
         - env:
             - name: SCREEPS_CLI_HOST
@@ -41,9 +48,9 @@ spec:
           ports:
             - containerPort: 21025
               protocol: TCP
-          #volumeMounts:
-          #  - mountPath: /world
-          #    name: screeps-world
+          volumeMounts:
+            - mountPath: /world
+              name: screeps-world
       restartPolicy: Always
       volumes:
         - name: screeps-world
