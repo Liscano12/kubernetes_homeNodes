@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    # Email-Adresse für Benachrichtigungen über ablaufende Zertifikate oder Probleme
+    email: example@example.com
+    # Dies sollte auf true gesetzt werden, um den Let's Encrypt TOS zu akzeptieren
+    server: https://acme-v02.api.letsencrypt.org/directory
+    solvers:
+    - http01:
+        ingress:
+          class: nginx

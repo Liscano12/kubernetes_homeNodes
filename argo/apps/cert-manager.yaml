@@ -22,6 +22,7 @@ spec:
   - repoURL: https://github.com/Liscano12/kubernetes_homeNodes.git
     targetRevision: main
     ref: kubernetes_homeNodes
+    path: argo/cert-manager
 
 
   syncPolicy:
