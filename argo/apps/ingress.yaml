@@ -6,10 +6,17 @@ metadata:
 spec:
   project: default
 
-  source:
-    repoURL: https://github.com/Liscano12/kubernetes_homeNodes.git
+  sources:
+  - repoURL: 'https://kubernetes.github.io/ingress-nginx'
+    chart: ingress-nginx
+    targetRevision: "4.11.2"
+    helm:
+      valueFiles:
+        - $kubernetes_homeNodes/ingress-nginx/values.yaml
+
+  - repoURL: https://github.com/Liscano12/kubernetes_homeNodes.git
     targetRevision: main
-    path: argo/ingress-nginx
+    ref: kubernetes_homeNodes
 
   destination: 
     server: https://kubernetes.default.svc

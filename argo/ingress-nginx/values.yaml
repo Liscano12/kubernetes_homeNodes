@@ -1,10 +1,9 @@
-ingress-nginx:
-  controller:
-    replicaCount: 2
-    minAvailable: 1
-    metrics:
+controller:
+  replicaCount: 2
+  minAvailable: 1
+  metrics:
+    enabled: true
+    serviceMonitor:
       enabled: true
-      serviceMonitor:
-        enabled: true
-       #additionalLabels:
-       #   release: prometheus-operator
+     #additionalLabels:
+     #   release: prometheus-operator
