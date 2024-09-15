@@ -5,7 +5,7 @@ metadata:
 spec:
   acme:
     # Email-Adresse für Benachrichtigungen über ablaufende Zertifikate oder Probleme
-    email: example@example.com
+    email: abc8302615@gmail.com
     # Dies sollte auf true gesetzt werden, um den Let's Encrypt TOS zu akzeptieren
     privateKeySecretRef:
       name: letsencrypt-prod-private-key
