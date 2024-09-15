@@ -6,13 +6,23 @@ metadata:
 spec:
   project: default
 
-  source:
-    repoURL: https://github.com/Liscano12/kubernetes_homeNodes.git
-    targetRevision: main
-    path: argo/cert-manager
+
   destination: 
     server: https://kubernetes.default.svc
     namespace: cert-manager
+    
+  sources:
+  - repoURL: 'https://charts.jetstack.io'
+    chart: cert-manager
+    targetRevision: "1.15.0"
+    helm:
+      valueFiles:
+        - $kubernetes_homeNodes/argo/cert-manager/values.yaml
+
+  - repoURL: https://github.com/Liscano12/kubernetes_homeNodes.git
+    targetRevision: main
+    ref: kubernetes_homeNodes
+
 
   syncPolicy:
     syncOptions:
