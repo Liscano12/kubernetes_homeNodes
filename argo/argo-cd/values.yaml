@@ -1,7 +1,7 @@
 global:
   # -- Default domain used by all components
   ## Used for ingr0esses, certificates, SSO, notifications, etc.
-  domain: argo.k3s.zapto.org
+  domain: argo.deathofdirt.com
 
   
 configs:
