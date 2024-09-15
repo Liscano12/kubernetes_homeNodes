@@ -1,7 +1,7 @@
 global:
   # -- Default domain used by all components
   ## Used for ingr0esses, certificates, SSO, notifications, etc.
-  domain: argocd.example.com
+  domain: argo.k3s.zapto.org
 
   
 configs:
@@ -90,15 +90,16 @@ server:
   # Argo CD server ingress configuration
   ingress:
     # -- Enable an ingress resource for the Argo CD server
-    enabled: false
+    enabled: true
 
     ## Ref: https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#option-1-ssl-passthrough
     annotations: {}
+      # cert-manager.io/cluster-issuer: nameOfClusterIssuer
       # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
       # nginx.ingress.kubernetes.io/ssl-passthrough: "true"
 
     # -- Defines which ingress controller will implement the resource
-    ingressClassName: ""
+    ingressClassName: "nginx"
 
     # -- Enable TLS configuration for the hostname defined at `server.ingress.hostname`
     ## TLS certificate will be retrieved from a TLS secret `argocd-server-tls`
