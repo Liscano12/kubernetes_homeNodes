@@ -7,3 +7,10 @@ controller:
       enabled: false
      #additionalLabels:
      #   release: prometheus-operator
+  service:
+    type: NodePort
+    nodePorts:
+      # -- Node port allocated for the external HTTP listener. If left empty, the service controller allocates one from the configured node port range.
+      http: 80
+      # -- Node port allocated for the external HTTPS listener. If left empty, the service controller allocates one from the configured node port range.
+      https: 443
