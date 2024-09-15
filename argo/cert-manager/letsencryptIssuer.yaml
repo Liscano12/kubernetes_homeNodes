@@ -7,6 +7,8 @@ spec:
     # Email-Adresse für Benachrichtigungen über ablaufende Zertifikate oder Probleme
     email: example@example.com
     # Dies sollte auf true gesetzt werden, um den Let's Encrypt TOS zu akzeptieren
+    privateKeySecretRef:
+      name: letsencrypt-prod-private-key
     server: https://acme-v02.api.letsencrypt.org/directory
     solvers:
     - http01:
