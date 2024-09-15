@@ -12,7 +12,7 @@ spec:
     targetRevision: "4.11.2"
     helm:
       valueFiles:
-        - $kubernetes_homeNodes/ingress-nginx/values.yaml
+        - $kubernetes_homeNodes/argo/ingress-nginx/values.yaml
 
   - repoURL: https://github.com/Liscano12/kubernetes_homeNodes.git
     targetRevision: main
