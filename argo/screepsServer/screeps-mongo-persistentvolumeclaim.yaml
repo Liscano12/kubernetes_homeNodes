@@ -10,4 +10,3 @@ spec:
   resources:
     requests:
       storage: 1000Mi
-allowVolumeExpansion: true
