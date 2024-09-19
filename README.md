@@ -10,16 +10,8 @@ add a ansible user
 give him root
 create a ssh key for the ansible user
 
-
-//TODO das sollte alles auf dem main node oder in einer pipeline passieren
 install ansible and helm on you local maschin
 register your ssh public key on the main node
 download the repo
 add the node ips to ansible/inventory
 run: ansible-playbook -i inventory main.yml
-
-```
-helm repo add argo https://argoproj.github.io/argo-helm
-
-helm install argocd argo/argo-cd -n argocd --create-namespace -f argo/values.yaml --version 7.5.2
-```

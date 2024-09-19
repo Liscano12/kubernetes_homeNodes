@@ -42,7 +42,10 @@ spec:
             - name: SCREEPS_PORT
               value: "21025"
             - name: STEAM_API_KEY
-              value: your_real_key
+              valueFrom:
+                secretKeyRef:
+                  name: screeps-server-secrets
+                  key: steam_api_key
           image: demannu/screeps-docker:latest
           name: screeps
           ports:
