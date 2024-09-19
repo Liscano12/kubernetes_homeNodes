@@ -21,7 +21,7 @@ services:
       - "21025:21025"
     environment:
       # Required
-      STEAM_API_KEY: your_real_key
+      STEAM_API_KEY: steam_api_key
       # Optional
       SCREEPS_PORT: 21025
       SCREEPS_HOST: 0.0.0.0
