@@ -14,7 +14,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: screeps-server
+                name: screeps
                 port:
                   number: 21025
   tls:
