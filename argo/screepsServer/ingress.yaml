@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: screeps-ingress
+  namespace: screeps-server
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: screeps.deathofdirt.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: screeps-server
+                port:
+                  number: 21025
+  tls:
+    - hosts:
+        - screeps.deathofdirt.com
+      secretName: screeps-tls
