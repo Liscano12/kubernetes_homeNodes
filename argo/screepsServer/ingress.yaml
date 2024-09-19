@@ -5,6 +5,8 @@ metadata:
   namespace: screeps-server
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
 spec:
   rules:
     - host: screeps.deathofdirt.com
