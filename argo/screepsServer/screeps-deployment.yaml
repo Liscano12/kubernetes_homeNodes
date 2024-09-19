@@ -51,9 +51,9 @@ spec:
           ports:
             - containerPort: 21025
               protocol: TCP
-          volumeMounts:
-            - mountPath: /world
-              name: screeps-world
+          #volumeMounts:
+          #  - mountPath: /world
+          #    name: screeps-world
       restartPolicy: Always
       volumes:
         - name: screeps-world

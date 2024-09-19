@@ -25,9 +25,9 @@ spec:
       containers:
         - image: mongo:latest
           name: db
-          volumeMounts:
-            - mountPath: /data/db
-              name: screeps-mongo
+          #volumeMounts:
+          #  - mountPath: /data/db
+          #    name: screeps-mongo
       restartPolicy: Always
       volumes:
         - name: screeps-mongo
