@@ -38,7 +38,10 @@ spec:
             - name: SCREEPS_HOST
               value: 0.0.0.0
             - name: SCREEPS_PASS
-              value: your_real_password
+              valueFrom:
+                secretKeyRef:
+                  name: screeps-server-secrets
+                  key: user_password
             - name: SCREEPS_PORT
               value: "21025"
             - name: STEAM_API_KEY
