@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  name: screeps-server
+  labels:
+    io.kompose.service: redis
+spec:
+  ports:
+    - port: 6379  # Redis Standard-Port
+  selector:
+    io.kompose.service: redis
+
