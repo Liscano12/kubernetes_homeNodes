@@ -4,4 +4,4 @@ metadata:
   name: ingress-nginx-udp
   namespace: ingress-nginx  # Namespace des Ingress-Controllers
 data:
-  7777: "satisfactory/satisfactory:7777"  # Format: <externer-Port>: "<Namespace/Service:Port>"
+  '7777': 'satisfactory/satisfactory:7777'  # Format: <externer-Port>: "<Namespace/Service:Port>"
