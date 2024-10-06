@@ -15,3 +15,7 @@ controller:
       # -- Node port allocated for the external HTTPS listener. If left empty, the service controller allocates one from the configured node port range.
       https: 30443
       udp: 7777
+
+  defaultBackend:
+    udp:
+      "7777": "ingress-nginx/satisfactory:7777"
