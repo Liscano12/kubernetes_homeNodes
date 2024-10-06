@@ -5,8 +5,8 @@ controller:
     enabled: true
     serviceMonitor:
       enabled: false
-     #additionalLabels:
-     #   release: prometheus-operator
+        #additionalLabels:
+        #   release: prometheus-operator
   service:
     type: NodePort
     nodePorts:
@@ -15,4 +15,4 @@ controller:
       # -- Node port allocated for the external HTTPS listener. If left empty, the service controller allocates one from the configured node port range.
       https: 30443
       udp:
-        7777: "ingress-nginx/satisfactory:7777"
+        7777: ingress-nginx/satisfactory:7777 # Format: <externer-Port>: "<Namespace/Service:Port>"
