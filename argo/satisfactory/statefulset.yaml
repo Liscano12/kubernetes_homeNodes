@@ -31,10 +31,10 @@ spec:
             - name: STEAMBETA
               value: "false"
           ports:
-            - name: "api"
+            - name: "gameTCP"
               containerPort: 7777
               protocol: TCP
-            - name: "game"
+            - name: "gameUDP"
               containerPort: 7777
               protocol: UDP
           volumeMounts:
