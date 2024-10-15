@@ -7,13 +7,15 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - name: "game"
-      port: 7777
-      protocol: UDP
-      targetPort: 7777
-    - name: "api"
-      port: 7777
+    - name: api
       protocol: TCP
-      targetPort: 7777
+      port: 7777
+      targetPort: api
+      nodePort: 37777
+    - name: game
+      protocol: UDP
+      port: 7777
+      targetPort: game
+      nodePort: 37777
   selector:
     app: satisfactory
