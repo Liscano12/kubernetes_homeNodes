@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -31,10 +30,10 @@ spec:
             - name: STEAMBETA
               value: "false"
           ports:
-            - name: "gameTCP"
+            - name: "api"
               containerPort: 7777
               protocol: TCP
-            - name: "gameUDP"
+            - name: "game"
               containerPort: 7777
               protocol: UDP
           volumeMounts:
