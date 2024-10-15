@@ -11,11 +11,11 @@ spec:
       protocol: TCP
       port: 7777
       targetPort: api
-      nodePort: 37777
+      nodePort: 32222
     - name: game
       protocol: UDP
       port: 7777
       targetPort: game
-      nodePort: 37777
+      nodePort: 32222
   selector:
     app: satisfactory
