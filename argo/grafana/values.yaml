@@ -306,10 +306,10 @@ ingress:
   #         name: use-annotation
 
 
-  tls: true
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  tls: 
+    - secretName: letsencrypt-prod
+      hosts:
+        - grafana.deathofdirt.com
 
 # -- BETA: Configure the gateway routes for the chart here.
 # More routes can be added by adding a dictionary key like the 'main' route.
