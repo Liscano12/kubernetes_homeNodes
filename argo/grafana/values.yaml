@@ -282,6 +282,7 @@ ingress:
   annotations: 
     kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer:"letsencrypt-prod"
   labels: {}
   path: /
 
@@ -307,7 +308,7 @@ ingress:
 
 
   tls: 
-    - secretName: letsencrypt-prod
+    - secretName: grafana-tls
       hosts:
         - grafana.deathofdirt.com
 
