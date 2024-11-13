@@ -306,7 +306,7 @@ ingress:
   #         name: use-annotation
 
 
-  tls: []
+  tls: true
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
@@ -411,7 +411,7 @@ extraContainerVolumes: []
 ##
 persistence:
   type: pvc
-  enabled: false
+  enabled: true
   # storageClassName: default
   accessModes:
     - ReadWriteOnce
