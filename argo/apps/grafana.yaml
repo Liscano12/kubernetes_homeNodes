@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana-application
+  namespace: argocd
+spec:
+  project: default
+
+  sources:
+  - repoURL: 'https://grafana.github.io/helm-charts'
+    chart: grafana
+    targetRevision: "8.6.0"
+    helm:
+      valueFiles:
+        - $kubernetes_homeNodes/argo/grafana/values.yaml
+
+  - repoURL: https://github.com/Liscano12/kubernetes_homeNodes.git
+    targetRevision: main
+    ref: kubernetes_homeNodes
+
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: grafana
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true
