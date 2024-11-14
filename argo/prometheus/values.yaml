@@ -403,7 +403,7 @@ server:
     tls:
       - secretName: prometheus-server-tls
         hosts:
-          - prometheus.deathofdirt.co
+          - prometheus.deathofdirt.com
 
   ## Server Deployment Strategy type
   strategy:
