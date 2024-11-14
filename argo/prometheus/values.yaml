@@ -400,10 +400,10 @@ server:
     ## Prometheus server Ingress TLS configuration (hosts passed through tpl)
     ## Secrets must be manually created in the namespace
     ##
-    tls: []
-    #   - secretName: prometheus-server-tls
-    #     hosts:
-    #       - prometheus.domain.com
+    tls:
+      - secretName: prometheus-server-tls
+        hosts:
+          - prometheus.deathofdirt.co
 
   ## Server Deployment Strategy type
   strategy:
