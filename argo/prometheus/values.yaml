@@ -381,7 +381,7 @@ server:
     ## Prometheus server Ingress hostnames with optional path (passed through tpl)
     ## Must be provided if Ingress is enabled
     ##
-    hosts: []
+    hosts:
       - prometheus.deathofdirt.com
     #   - domain.com/prometheus
 
