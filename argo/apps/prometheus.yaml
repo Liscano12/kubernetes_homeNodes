@@ -8,8 +8,8 @@ spec:
 
   sources:
   - repoURL: 'https://prometheus-community.github.io/helm-charts'
-    chart: prometheus-community
-    targetRevision: "1.13.1"
+    chart: prometheus
+    targetRevision: "25.30.0"
     helm:
       valueFiles:
         - $kubernetes_homeNodes/argo/prometheus/values.yaml
